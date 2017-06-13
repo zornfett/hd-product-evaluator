@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<title>Home Depot product evaluator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+	<style>
+		button {
+			display: block;
+			margin: 2em auto;
+		}
+	</style>
+
+	</head>
+	<body>
+
+	<div class="container">
+		<!-- <h1>TKTKTKTKTKTKTKTKTK</h1>
+		<p>TKTKTKTKTKTKTKTKTK</p> -->
+
+		<button>run that shit, homie</button>
+	</div> 
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+	<script>
+
+	// array of URLs & elements
+
+	// start evals on click
+	$('button').on('click', function(e){
+		e.preventDefault();
+		var i;
+		var urls = [
+			'http://www.homedepot.com/p/B-Air-CP-1-Water-Damage-Restoration-Contractor-Pack-1-Commercial-Dehumidifier-8-Air-Mover-2-Mini-Air-Mover-BA-CP-1-BL/301965359?',
+			'http://www.homedepot.com/p/B-Air-CP-1X-Water-Damage-Restoration-Contractor-Pack-1-Commercial-Dehumidifier-1-Air-Scrubber-8-Air-Mover-2-Mini-Air-Mover-BA-CP-1X-BL/301965361',
+			'http://www.homedepot.com/p/B-Air-CP-2-Water-Damage-Restoration-Contractor-Pack-1-LGR-Commercial-Dehumidifier-8-Air-Mover-2-Mini-Air-Mover-BA-CP-2-BL/301965362'
+
+			// 'http://www.google.com',
+			// 'http://www.yahoo.com',
+			// 'http://www.bing.com'
+		];
+		for (i = 0; i < urls.length; i++) {
+			// artoo.scrape('.product-title__title', 'text');
+
+			var results = [];
+			$('.product-title__title').each(function (i, e) {
+				results.push($(e).text());
+			});
+
+			console.log(results);
+			
+		};
+
+
+		
+
+
+
+
+
+
+	});
+
+	</script>
+	</body>
+</html>
+
+<!-- 
+
+https://stackoverflow.com/questions/35260902/pass-urls-stored-in-array-to-window-open-in-for-loop-javascript
+
+http://medialab.github.io/artoo/scrape/
+
+
+NODE
+http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-javascript-and-node-js/
+PYTHON
+http://pwp.stevecassidy.net/dataweb/crawling.html
+PHP/PHANTOMJS
+https://stackoverflow.com/questions/28505501/get-the-content-text-of-an-url-after-javascript-has-run-with-php
+
+https://www.npmjs.com/package/wscraper
+
+ -->
