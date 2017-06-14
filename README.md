@@ -14,6 +14,11 @@ to test: clear cart, then fake-purchase an item, check initial pricing
 
 interval is daily; CC: = David, Patrick, ChrisE, Greg
 
+Googly:
+scrape html return text output to JSON XLS
+http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html
+
+
 =====
 
 - [why do we have fucking titles like this: "Water Damage Restoration Contractor Commercial Dehumidifier 8 Air Mover 2 Mini Air Mover"? I would think it deludes the brand / where is the goddam company name therein? if the answer is SEO: bullshit - Home Depot does its own SEO - verify this if HD has a marketing recommendations doc]
@@ -67,10 +72,16 @@ http://pwp.stevecassidy.net/dataweb/crawling.html
 PHP/PHANTOMJS
 https://stackoverflow.com/questions/28505501/get-the-content-text-of-an-url-after-javascript-has-run-with-php
 
+GOOGS
+http://go.shr.lc/2spAsTD
+http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html
+
 THEIR DOCUMENTATION
 Home Depot has an API: https://www.google.com/search?q=home+depot+api&ie=utf-8&oe=utf-8
+
 https://www.programmableweb.com/api/home-depot-product
 https://www.programmableweb.com/api/home-depot-store-search
+
 http://developer.homedepot.com/book-page/product-apis (need credentials)
 http://developer.homedepot.com/node/55 (need credentials / web api for the online catalog)
 http://developer.homedepot.com/book-page/store-search-api (needs credentials / API docs?)
