@@ -1,50 +1,48 @@
 # hd-product-evaluator
-scrape content from multiple URLs
 
-NOTES ::
-
-landing page = homedepot.com/water-damage-clarifyURL
-main site/page = product appearance as result of site search
-if there is price discrepancy, leave a NOTE/COMMENT in the field/color bg to RED
-if not in stock
-there will be no 'add to cart' button
-tell david
-all shipping should be 'free'
-to test: clear cart, then fake-purchase an item, check initial pricing
-
-interval is daily; CC: = David, Patrick, ChrisE, Greg
-
-Googly:
-scrape html return text output to JSON XLS
-http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html
-
-
-=====
-
-- [why do we have fucking titles like this: "Water Damage Restoration Contractor Commercial Dehumidifier 8 Air Mover 2 Mini Air Mover"? I would think it deludes the brand / where is the goddam company name therein? if the answer is SEO: bullshit - Home Depot does its own SEO - verify this if HD has a marketing recommendations doc]
-
-=====
 
 PROGRAMMATIQUE:
-GOAL: run script (in Console?) .. images will probably be verified by-hand (possible to output them to thumbnail page?)
+GOAL: run script (in Console?) .. images will probably be verified by-hand (possible to output them to thumbnail page?) / scrape content from multiple URLs
 
-Q: generally, how much crawling should be done from landing pages
-- yeah, from the looks, perform all steps in indiv.pages / purchase test
+PROCESS OVERVIEW:
+access URL array / use CORS per cross-domain
+- if not, open page/scrape/close
+perform scrape functions on each URL
+output to [tabled?] HTML
 
---- [SKIP THIS / CRAWL WILL OCCUR IN INDIV.PAGES] go to 'b-air' search URL
-crawl:
-- all product URLs therein
-- [save this step for purchase test?] whether they have 'add to cart' butt
-- [save this step for purchase test?] nab prices
-- [save this step for purchase test?] crawl product name?
-- [save this step for purchase test?] search for 'free shipping'
-Q: how go to page 2 of results?
-take crawl data and:
-- compare prices (if discrep, leave comment and color cell bg)
-- compare copy (name, XXXX)? or display for eval elsewhere?
+78 products (2 missing presently)
 
+NODES OF INTEREST:
 
-*** go to individual product pages *** 
+capture SKU / display:
+.brandModelInfo .product_details.modelNo
+
+capture OMSID? / display:
+#product_internet_number
+
+capture main image / display via thumb or overlay:
+#mainImage
+
+capture product title / compare / note if diff:
+h1.product-title__title
+
+capture price / compare / note if diff:
+:
+.price__dollars
+
+does 'add to cart' exist?  note if not:
+#atc_shipIt
+- alt: search for 'add to cart' text on page
+
+[DO BY-HAND?] check to see if product is on these category pages / note if yes:
+
+http://www.homedepot.com/b/Featured-Products-Water-Damage-Restoration-Air-Movers/N-5yc1vZcgvn
+http://www.homedepot.com/b/Featured-Products-Water-Damage-Restoration-Air-Scrubbers/N-5yc1vZcgvl
+http://www.homedepot.com/b/Featured-Products-Water-Damage-Restoration-Commercial-Dehumidifiers/N-5yc1vZcgvj
+http://www.homedepot.com/b/Featured-Products-Water-Damage-Restoration-Contractor-Packs/N-5yc1vZch23
+- check this page by-hand, per pagination: http://www.homedepot.com/b/Featured-Products-Water-Damage-Restoration/N-5yc1vZcgvk
+
+PREV: go to individual product pages
 Q: how list/store these URLs? array?
 - compare 
 -- OMSID = id="product_internet_number"
@@ -63,6 +61,7 @@ Q: how list/store these URLs? array?
 -- into HTML?
 -- into [googCloud] XLS
 
+schoonheid = beauty
 
 PROGRAM.RESOURCES:
 NODE
@@ -75,6 +74,19 @@ https://stackoverflow.com/questions/28505501/get-the-content-text-of-an-url-afte
 GOOGS
 http://go.shr.lc/2spAsTD
 http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html
+
+https://stackoverflow.com/questions/5419769/accessing-dom-element-of-a-webpage-without-opening-it
+AJAX, butt no cross-domain (JSONP?)
+https://stackoverflow.com/questions/8509772/load-page-in-javascript-without-opening-it
+
+scrape html return text output to JSON XLS
+http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html
+NAAHHH https://eagereyes.org/data/scrape-tables-using-google-docs
+
+https://www.html5rocks.com/en/tutorials/cors/
+
+http://medialab.github.io/artoo/scrape/
+https://www.npmjs.com/package/wscraper
 
 THEIR DOCUMENTATION
 Home Depot has an API: https://www.google.com/search?q=home+depot+api&ie=utf-8&oe=utf-8
@@ -96,9 +108,28 @@ https://homedepotlink.homedepot.com/en-us/Related%20Documents/Forms/AllItems.asp
 https://homedepotlink.homedepot.com/en-us/Related%20Documents/Vendor%20Portal%20User%20Guide.pdf
 https://www.linkedin.com/in/ann-klumb-5b586383/
 
-HD online help:
-IDMTBSupport@thdidm.zendesk.com
+"b-air" via HD search
+http://www.homedepot.com/s/b-air?NCNI-5
 
+"blowers"
+http://www.homedepot.com/b/Heating-Venting-Cooling-Portable-Fans-Blower-Fans/N-5yc1vZc4m7
+
+dehumidifiers
+http://www.homedepot.com/b/Heating-Venting-Cooling-Air-Quality-Dehumidifiers/N-5yc1vZc4l8
+
+[why do we have fucking titles like this: "Water Damage Restoration Contractor Commercial Dehumidifier 8 Air Mover 2 Mini Air Mover"? I would think it deludes the brand / where is the goddam company name therein? if the answer is SEO: bullshit - Home Depot does its own SEO - verify this if HD has a marketing recommendations doc]
+
+O.G. DT INSTRUCTS:
+landing page = homedepot.com/water-damage-clarifyURL
+main site/page = product appearance as result of site search
+if there is price discrepancy, leave a NOTE/COMMENT in the field/color bg to RED
+if not in stock
+there will be no 'add to cart' button
+tell david
+all shipping should be 'free'
+to test: clear cart, then fake-purchase an item, check initial pricing
+
+interval is daily; CC: = David, Patrick, ChrisE, Greg
 
 DT QUESTIONS
 1.  The only image evaluation we perform here is whether or not combo pack main images have text in them? 
@@ -127,28 +158,14 @@ YES
 XXX. The doc mentions there’s a ‘financial penalty’ (PAGE 71) for content issues/errors that lapse for more than 3 days – have they ever levied this against us? 
 NOPE
 
-
-ADDIT.NOTES:
+HD CORRESPO:
 
 Klumb, Ann
 "Image standards are set in the data standards for your items. It will differ for each category/class as to what is required, what is acceptable, and what is not. You can find these in the Vendor Portal [I do not have access to this] under 'Vendor Resources' and then 'Data Standards'. It will outline what the images should look like, the spec requirements, and required vs. recommended images."
 
-=====
+Renisha Epps
+"Based on our engineer's advice, we do  not open our APIs to the public. 
+Thank you for your inquiry."
 
-I don't see any fucking 'water damage' section. Alternates:
-http://www.homedepot.com/c/HT_WeatherCenter_Flood
-http://www.homedepot.com/b/Heating-Venting-Cooling/N-5yc1vZc4k8/Ntk-BrandSearch/Ntt-b-air
-http://www.homedepot.com/b/Heating-Venting-Cooling-Air-Quality/N-5yc1vZc4mg/Ntk-BrandSearch/Ntt-b-air
-http://www.homedepot.com/b/Heating-Venting-Cooling-Portable-Fans/N-5yc1vZc4lw/Ntk-BrandSearch/Ntt-b-air
-http://www.homedepot.com/b/Appliances/N-5yc1vZbv1w/Ntk-BrandSearch/Ntt-b-air
-http://www.homedepot.com/b/Tools/N-5yc1vZc1xy/Ntk-BrandSearch/Ntt-b-air
-
-"b-air" via HD search
-http://www.homedepot.com/s/b-air?NCNI-5
-
-"blowers"
-http://www.homedepot.com/b/Heating-Venting-Cooling-Portable-Fans-Blower-Fans/N-5yc1vZc4m7
-
-dehumidifiers
-http://www.homedepot.com/b/Heating-Venting-Cooling-Air-Quality-Dehumidifiers/N-5yc1vZc4l8
-
+HD online help:
+IDMTBSupport@thdidm.zendesk.com
