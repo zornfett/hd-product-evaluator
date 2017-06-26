@@ -19,10 +19,7 @@
 	<body>
 
 	<div class="container">
-		<!-- <h1>TKTKTKTKTKTKTKTKTK</h1>
-		<p>TKTKTKTKTKTKTKTKTK</p> -->
 		<div id="dumper"></div>
-
 		<button>This is going to be great!</button>
 	</div> 
 
@@ -113,13 +110,37 @@
 		'http://www.homedepot.com/p/B-Air-1-2-HP-2950-CFM-Air-Mover-for-Janitorial-Water-Damage-Restoration-Stackable-Carpet-Dryer-Floor-Blower-Fan-Grey-BA-VP-50-GY/301053818'
 	];
 
+	var openedWindow;
+
+	function openWindow() {
+		openedWindow = window.open(urls[i]);
+	};
+
+	// function closeOpenedwindows() {
+	// 	openedWIndow.close();
+	// };
+
+	/* "Scripts may close only the windows that were opened by it."
+	function closeCurrentWindow() {
+		window.close();
+	};
+	// function closeOpenedwindows() {
+	// 	openedWIndow.close();
+	// }; */
+
 	// start evals on click
 	$('button').on('click', function(e){
 		e.preventDefault();
+
+
 	
 		for (i = 0; i < urls.length; i++) {
 
+			// var windowName = '';
+
 			// open each URL
+			openWindow(); // windowName[i], '_blank'
+			// return false;
 
 			// capture SKU / display (.brandModelInfo .product_details.modelNo)
 
@@ -133,7 +154,8 @@
 
 			// does 'add to cart' exist?  note if not (#atc_shipIt)
 
-			// close each URL
+			// close each URL / "Scripts may close only the windows that were opened by it."
+			//closeCurrentWindow();
 
 			console.log("hotdog!");
 		};
@@ -173,5 +195,12 @@ http://medialab.github.io/artoo/quick_start/
 !!!
 https://code.tutsplus.com/tutorials/how-to-scrape-web-pages-with-nodejs-and-jquery--net-22478
 https://scotch.io/tutorials/scraping-the-web-with-node-js
+
+::::
+
+git diff
+https://stackoverflow.com/questions/1800783/compare-local-git-branch-with-remote-branch
+
+https://stackoverflow.com/questions/2827637/how-can-i-open-a-link-in-a-new-window
 
  -->
