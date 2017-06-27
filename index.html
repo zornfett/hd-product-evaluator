@@ -26,38 +26,55 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 
-	var urlList = ['http://www.google.com', 'http://www.msn.com', 'http://www.yahoo.com'];
-	var winder;
-	var countings = 0; // loop counter
+		var urlList = ['http://www.google.com', 'http://www.msn.com', 'http://www.yahoo.com'];
+		// var winder;
+		var winder = window.open(urlList[countings], '', '');
+		var countings = 0; // loop counter
 
-	function closeWin(){
-		if(winder){
-			winder.close();
+		// open each URL
+		function openWindow(){
+			// winder = window.open(urlList[countings], '', '');
+
+			setTimeout(function() {
+	/*				// closeWin();
+				// winder.close(); // on 2nd loop: "Uncaught TypeError: Cannot read property 'close' of null"
+				countings++; //increment the index
+				if(countings < urlList.length) {
+					openWindow(); 
+				} else {
+					console.log("that's all ..")
+				}
+	*/
+				console.log("hotdog!");
+			}, 2000);
 		}
-	}
 
-	function openWindow(){
-		winder = window.open(urlList[countings], '', '');
+		// capture SKU / display (.brandModelInfo .product_details.modelNo)
 
-		setTimeout(function() {
-			closeWin();
-			// winder.close(); // on 2nd loop: "Uncaught TypeError: Cannot read property 'close' of null"
+		// capture OMSID? / display (#product_internet_number)
 
-			countings++; //increment the index
-			if(countings < urlList.length) {
-				openWindow(); 
-			} else {
-				console.log("that's all ..")
+		// capture main image / display via thumb or overlay (#mainImage)
+
+		// capture product title / compare / note if diff (h1.product-title__title)
+
+		// capture price / compare / note if diff (.price__dollars)
+
+		// does 'add to cart' exist?  note if not (#atc_shipIt)
+
+		// close each URL
+		function closeWin(){
+			if(winder){
+				winder.close();
 			}
-			console.log("hotdog!");
-		}, 2000);
-	}
+		}
 
-	// start evals on click
-	$('button').on('click', function(e){
-		e.preventDefault();
-		openWindow();
-	});
+		// EVAL ON CLICK!!
+		$('button').on('click', function(e){
+			e.preventDefault();
+
+			winder.open();
+			// openWindow();
+		});
 
 	</script>
 	</body>
@@ -101,6 +118,8 @@ https://stackoverflow.com/questions/2827637/how-can-i-open-a-link-in-a-new-windo
 https://jsfiddle.net/0r0Lgawo/
 
 https://stackoverflow.com/questions/23701987/javascript-iterate-through-array-of-urls-and-open-then-close-at-defined-interv
+
+http://www.ajaymatharu.com/javascript-difference-between-undefined-and-null/
 
 
  -->
