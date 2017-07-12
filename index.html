@@ -20,61 +20,56 @@
 
 	<div class="container">
 		<div id="dumper"></div>
-		<button>This is going to be great!</button>
+		<button>XXXX!</button>
 	</div> 
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- <script src="XXXX"></script>
+	<script src="crawler.js"></script> -->
 	<script>
 
-		var urlList = ['http://www.google.com', 'http://www.msn.com', 'http://www.yahoo.com'];
-		// var winder;
-		var winder = window.open(urlList[countings], '', '');
-		var countings = 0; // loop counter
+var hdpages;
 
-		// open each URL
-		function openWindow(){
-			// winder = window.open(urlList[countings], '', '');
+$.getJSON("urls-to-scrape.json", function(data){
+	var hdpages = data;
+	// console.log(hdpages);
 
-			setTimeout(function() {
-	/*				// closeWin();
-				// winder.close(); // on 2nd loop: "Uncaught TypeError: Cannot read property 'close' of null"
-				countings++; //increment the index
-				if(countings < urlList.length) {
-					openWindow(); 
-				} else {
-					console.log("that's all ..")
-				}
-	*/
-				console.log("hotdog!");
-			}, 2000);
+	$('button').on('click', function(){
+		return JSON.stringify(hdpages);
+		// console.log(hdpages);
+	});
+})
+
+
+
+/* naw
+
+var request = require('request');
+var cheerio = require('cheerio');
+var URL = require('url-parse');
+
+var scrapey = function(){
+	var pageToVisit = "http://www.arstechnica.com";
+	console.log("visiting page " + pageToVisit);
+	request(pageToVisit, function(error, response, body){
+		if (error){
+			console.log("FUCK! " + error);
 		}
-
-		// capture SKU / display (.brandModelInfo .product_details.modelNo)
-
-		// capture OMSID? / display (#product_internet_number)
-
-		// capture main image / display via thumb or overlay (#mainImage)
-
-		// capture product title / compare / note if diff (h1.product-title__title)
-
-		// capture price / compare / note if diff (.price__dollars)
-
-		// does 'add to cart' exist?  note if not (#atc_shipIt)
-
-		// close each URL
-		function closeWin(){
-			if(winder){
-				winder.close();
-			}
+		//check status code (200 is HTTP OK)
+		console.log("status code: " + repsonse.statusCode);
+		if (response.statusCode === 200){
+			// parse the doc.body
+			var $ = cheerio.load(body);
+			console.log("Page title: " + ('title').text());
 		}
+	});
+};
 
-		// EVAL ON CLICK!!
-		$('button').on('click', function(e){
-			e.preventDefault();
+$('button').on('click', function(){
+	scrapey();
+});
 
-			winder.open();
-			// openWindow();
-		});
+*/
 
 	</script>
 	</body>
@@ -82,44 +77,26 @@
 
 <!-- 
 
-https://stackoverflow.com/questions/23701987/javascript-iterate-through-array-of-urls-and-open-then-close-at-defined-interv
+http://www.netinstructions.com/how-to-make-a-simple-web-crawler-in-javascript-and-node-js/
 
-function openTabsAndScrape(){
-	tabness = window.open(urls[i], "", "");
-	setTimeout(function(){
-		tabness.close(); // close WIN/tabs/blah
-		i++;
-		if (i < urls.length) openTabsAndScrape();
-	}, 2000);
-}
+RE: Cheerio https://vimeo.com/31950192
 
-https://stackoverflow.com/questions/26888780/closing-a-window-after-the-page-is-fully-loaded
+https://cheerio.js.org/
 
-https://stackoverflow.com/questions/11488014/asynchronous-process-inside-a-javascript-for-loop
 
-https://stackoverflow.com/questions/25595734/jquery-store-urls-into-an-array-and-open-them-using-click-function-with-cont
-
-NO AJAXs
-https://stackoverflow.com/questions/5667880/simple-screen-scraping-using-jquery
-
-http://medialab.github.io/artoo/quick_start/
-
-!!!
 https://code.tutsplus.com/tutorials/how-to-scrape-web-pages-with-nodejs-and-jquery--net-22478
-https://scotch.io/tutorials/scraping-the-web-with-node-js
 
-::::
+https://ionicabizau.net/blog/30-how-to-write-a-web-scraper-in-node-js
 
-git diff
-https://stackoverflow.com/questions/1800783/compare-local-git-branch-with-remote-branch
+https://stackoverflow.com/questions/3102819/disable-same-origin-policy-in-chrome
 
-https://stackoverflow.com/questions/2827637/how-can-i-open-a-link-in-a-new-window
+this worked:
+chrome.exe -–allow-file-access-from-files
 
-https://jsfiddle.net/0r0Lgawo/
+https://doc.scrapy.org/en/latest/intro/overview.ht
 
-https://stackoverflow.com/questions/23701987/javascript-iterate-through-array-of-urls-and-open-then-close-at-defined-interv
+https://github.com/substack/node-browserify
 
-http://www.ajaymatharu.com/javascript-difference-between-undefined-and-null/
-
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
 
  -->
