@@ -71,6 +71,9 @@ http://pwp.stevecassidy.net/dataweb/crawling.html
 PHP/PHANTOMJS
 https://stackoverflow.com/questions/28505501/get-the-content-text-of-an-url-after-javascript-has-run-with-php
 
+SCRAPEY
+https://stackoverflow.com/questions/28981743/scrapy-scrape-multiple-urls-using-results-from-the-first-url
+
 GOOGS
 http://go.shr.lc/2spAsTD
 http://jeroenjanssens.com/2013/09/19/seven-command-line-tools-for-data-science.html
